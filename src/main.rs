@@ -1,13 +1,41 @@
+use std::fmt;
 #[derive(Debug)]
-struct Person<'a> {
-    name: &'a str,
-    age: u8
+struct MinMax(f64,f64);
+
+impl fmt::Display for MinMax {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f,"({}, {})",self.0,self.1)
+    }
+}
+#[derive(Debug)]
+struct Point2D {
+    x: f64,
+    y: f64,
 }
 
-fn main() {
-    let name = "Peter";
-    let age = 27;
-    let peter = Person { name, age };
+impl fmt::Display for Point2D {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "x:{},y:{}",self.x,self.y)
+    }
+}
 
-    println!("{:#?}", peter);
+#[derive(Debug)]
+struct Complex {
+    real: f64,
+    imag: f64,
+}
+
+impl fmt::Display for Complex {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f,"real:{},imag:{}",self.real,self.imag)
+    }
+}
+fn main() {
+    let minmax = MinMax(3.3,7.2);
+
+    println!("Display: {} + {}",minmax.0,minmax.1);
+
+    let complex = Complex {real: 3.3,imag:7.2};
+    println!("Debug: {:?}",complex)
+
 }
