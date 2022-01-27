@@ -19,23 +19,21 @@ impl fmt::Display for Point2D {
     }
 }
 
-#[derive(Debug)]
-struct Complex {
-    real: f64,
-    imag: f64,
-}
+use std::time::{Instant};
 
-impl fmt::Display for Complex {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f,"real:{},imag:{}",self.real,self.imag)
-    }
-}
 fn main() {
-    let minmax = MinMax(3.3,7.2);
+    let start = Instant::now();
+    for i in 1..40 {
+        let a = cui(i);
+        println!("{}",a)
+    }
+    let duration = start.elapsed();
+    println!("循环的耗时: {:?}", duration);
+}
 
-    println!("Display: {} + {}",minmax.0,minmax.1);
+fn cui(n:i32) -> i32{
+    if n == 1 {return 1;}
+    if n == 2 {return 2;}
 
-    let complex = Complex {real: 3.3,imag:7.2};
-    println!("Debug: {:?}",complex)
-
+    return cui(n-1) + cui(n-2)
 }
