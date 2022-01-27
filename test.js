@@ -1,5 +1,5 @@
 console.time('abc');
-for(let i = 1; i < 40; i++){
+for(let i = 1; i < 50; i++){
     let a = cui(i)
     console.log(a)
 }
